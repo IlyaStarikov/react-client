@@ -1,10 +1,8 @@
 import React from "react";
-import Body from "../components/Body/Body";
-import NavBar from "../components/NavBar/NavBar"
+import Body from "../../components/Body/Body";
 
 const Main = () => {
     return  <div>
-              <NavBar />
               <Body />
             </div>
 };

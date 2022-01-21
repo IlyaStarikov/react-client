@@ -1,5 +1,5 @@
 import React from "react";
-import logo from './123.jpg';
+import logo from '../../assets/123.jpg';
 
 const Card = () => {
     return   <div class="row">
