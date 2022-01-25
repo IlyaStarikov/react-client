@@ -7,7 +7,7 @@ const initialState = {
 };
 
 export default function reducerNews(action, state = initialState) {
-  switch (action.type) {
+  switch (action) {
     case NEWS_RECEIVED:
       return { ...state, fetching: false, news: action.payload };
     case NEWS_REJECTED:
