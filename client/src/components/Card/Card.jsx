@@ -1,20 +1,19 @@
 import React from 'react';
+import { shape } from 'prop-types';
+
 import logo from '../../assets/123.jpg';
 
-function Card() {
+function Card({ post }) {
   return (
     <div className="row">
       <div className="">
         <div className="card">
           <div className="card-image">
             <img alt="" src={logo} />
-            <span className="card-title">Card Title</span>
+            <span className="card-title">{ post.header }</span>
           </div>
           <div className="card-content">
-            <p>
-              I am a very simple card. I am good at containing small bits of information.
-              I am convenient because I require little markup to use effectively.
-            </p>
+            <p>{ post.content }</p>
           </div>
           <div className="card-action">
             <a href="123">This is a link</a>
@@ -24,5 +23,9 @@ function Card() {
     </div>
   );
 }
+
+Card.propTypes = {
+  post: shape({}).isRequired,
+};
 
 export default Card;

@@ -1,21 +1,17 @@
 import {
   takeEvery,
-  call,
+  // call,
   put,
 } from 'redux-saga/effects';
+// import * as axios from 'axios';
 
-import * as axios from 'axios';
 import * as actionTypes from '../constants';
+
+import api from '../../api/news';
 
 function* getNewsSaga() {
   try {
-    const { data: response } = yield call(
-      axios,
-      {
-        method: 'GET',
-        url: 'http://localhost:3000/news',
-      },
-    );
+    const { data: response } = yield api.get('/news');
     yield put({ type: actionTypes.NEWS_RECEIVED, response });
   } catch (error) {
     yield put({ type: actionTypes.NEWS_REJECTED, error });

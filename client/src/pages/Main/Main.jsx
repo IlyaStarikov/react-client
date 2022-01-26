@@ -1,22 +1,36 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Body from '../../components/Body/Body';
-
+import Card from '../../components/Card/Card';
 import { getNews } from '../../redux/actions/actions';
 
 function Main() {
   const dispatch = useDispatch();
-  const news = useSelector((state) => state.reducerNews.news);
-  console.log(news);
 
   useEffect(() => {
     dispatch(getNews());
   }, [dispatch]);
 
+  const {
+    news: postsItems,
+    error: postsFetchError,
+    fetching: isPostsFetching,
+  } = useSelector((state) => state.posts);
+
+  if (isPostsFetching) {
+    return 'Loading...';
+  }
+
+  if (postsFetchError) {
+    if (process.env.NODE_ENV !== 'production') {
+      return `Error: ${postsFetchError.message}`;
+    }
+    return 'Error: hidden';
+  }
+
   return (
     <div className="container flex">
-      <Body />
+      {postsItems.map((post) => <Card post={post} key={post.id} />)}
     </div>
   );
 }
