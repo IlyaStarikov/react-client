@@ -6,18 +6,16 @@ import logo from '../../assets/123.jpg';
 function Card({ post }) {
   return (
     <div className="row">
-      <div className="">
-        <div className="card">
-          <div className="card-image">
-            <img alt="" src={logo} />
-            <span className="card-title">{ post.header }</span>
-          </div>
-          <div className="card-content">
-            <p>{ post.content }</p>
-          </div>
-          <div className="card-action">
-            <a href="123">This is a link</a>
-          </div>
+      <div className="card">
+        <div className="card-image">
+          <img alt="" src={logo} />
+          <span className="card-title">{ post.header }</span>
+        </div>
+        <div className="card-content">
+          <p>{ post.content }</p>
+        </div>
+        <div className="card-action">
+          <a href="123">This is a link</a>
         </div>
       </div>
     </div>
@@ -28,4 +26,4 @@ Card.propTypes = {
   post: shape({}).isRequired,
 };
 
-export default Card;
+export default React.memo(Card);

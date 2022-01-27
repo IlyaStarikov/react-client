@@ -7,15 +7,15 @@ import { getNews } from '../../redux/actions/actions';
 function Main() {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getNews());
-  }, [dispatch]);
-
   const {
     news: postsItems,
     error: postsFetchError,
     fetching: isPostsFetching,
   } = useSelector((state) => state.posts);
+
+  useEffect(() => {
+    dispatch(getNews());
+  }, [dispatch]);
 
   if (isPostsFetching) {
     return 'Loading...';

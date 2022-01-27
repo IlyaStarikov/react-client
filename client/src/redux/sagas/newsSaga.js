@@ -1,13 +1,11 @@
 import {
   takeEvery,
-  // call,
   put,
 } from 'redux-saga/effects';
-// import * as axios from 'axios';
 
 import * as actionTypes from '../constants';
 
-import api from '../../api/news';
+import api from '../../api/api';
 
 function* getNewsSaga() {
   try {
