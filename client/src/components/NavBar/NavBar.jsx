@@ -11,7 +11,7 @@ function NavBar() {
         <ul className="right hide-on-med-and-down">
           <li><a href="/">News</a></li>
           <li><a href="/user">Users</a></li>
-          <li><a href="user/123">Log in</a></li>
+          <li><a href="/login">Log in</a></li>
         </ul>
       </div>
     </nav>

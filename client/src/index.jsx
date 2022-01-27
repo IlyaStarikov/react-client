@@ -5,6 +5,8 @@ import { Provider } from 'react-redux';
 import store from './redux/store/store';
 import App from './App';
 
+import 'materialize-css/dist/css/materialize.min.css';
+
 ReactDOM.render(
   <Provider store={store}>
     <App />
