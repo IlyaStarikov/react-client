@@ -1,0 +1,10 @@
+label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.browser-default {
+    width: 150px;
+    margin-right: 30px;
+}
