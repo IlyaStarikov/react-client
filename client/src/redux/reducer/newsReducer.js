@@ -1,9 +1,13 @@
-import { NEWS_RECEIVED, NEWS_REQUESTED, NEWS_REJECTED } from '../constants';
+import {
+  NEWS_RECEIVED, NEWS_REQUESTED, NEWS_REJECTED, NEWS_SEARCH,
+} from '../constants';
 
 const initialState = {
   fetching: false,
   news: [],
   error: null,
+  searchNews: [],
+  validation: false,
 };
 
 function reducerNews(state = initialState, action = {}) {
@@ -15,6 +19,10 @@ function reducerNews(state = initialState, action = {}) {
     case NEWS_REJECTED:
       return {
         ...state, fetching: false, news: null, error: action.error,
+      };
+    case NEWS_SEARCH:
+      return {
+        ...state, searchNews: action.payload.news, validation: action.payload.inputValue,
       };
     default:
       return state;

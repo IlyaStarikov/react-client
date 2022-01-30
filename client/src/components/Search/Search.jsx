@@ -1,28 +1,53 @@
-import React from 'react';
-
-import { useSelector } from 'react-redux';
+import React, { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { searchNews } from '../../redux/actions/actions';
 
 import './Search.css';
 
 function Search() {
+  const dispatch = useDispatch();
+
   const {
     news: postsItems,
-    error: postsFetchError,
-    fetching: isPostsFetching,
   } = useSelector((state) => state.posts);
 
-  console.log(postsItems);
+  const log = useCallback(
+    (event) => {
+      const searchValue = document.querySelector('.browser-default').value;
+      if (event.target.value) {
+        switch (searchValue) {
+          case 'Tag':
+            dispatch(searchNews(postsItems.filter((post) => post.tag.search(event.target.value) !== -1), true)),
+            [dispatch];
+            break;
+          case 'Title':
+            dispatch(searchNews(postsItems.filter((post) => post.header.search(event.target.value) !== -1), true)),
+            [dispatch];
+            break;
+          case 'Author':
+            dispatch(searchNews(postsItems.filter((post) => post.user_id.search(event.target.value) !== -1), true)),
+            [dispatch];
+            break;
+          default:
+            alert('Выберите параметр!');
+        }
+      } else {
+        dispatch(searchNews([], false)),
+        [dispatch];
+      }
+    },
+  );
 
   return (
     <label htmlFor="select">
       <select className="browser-default">
-        <option value="" disabled selected>Choose your option</option>
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
-        <option value="3">Option 3</option>
+        <option value="" disabled selected>Choose search value</option>
+        <option value="Title">Title</option>
+        <option value="Tag">Tag</option>
+        <option value="Author">Author</option>
       </select>
       <div className="input-field col s6">
-        <input placeholder="Placeholder" id="first_name" type="text" className="validate" />
+        <input onChange={log} placeholder="Placeholder" id="first_name" type="text" className="validate" />
       </div>
     </label>
   );

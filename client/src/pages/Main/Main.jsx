@@ -12,6 +12,8 @@ function Main() {
     news: postsItems,
     error: postsFetchError,
     fetching: isPostsFetching,
+    searchNews: news,
+    validation: isValidation,
   } = useSelector((state) => state.posts);
 
   useEffect(() => {
@@ -33,7 +35,8 @@ function Main() {
     <>
       <Search />
       <div className="container flex">
-        {postsItems.map((post) => <Card post={post} key={post.id} />)}
+        {(isValidation ? news : postsItems).map((post) => <Card post={post} key={post.id} />)}
+        {(isValidation && !news.length ? <div>Таких новостей нет :(</div> : '')}
       </div>
     </>
   );
