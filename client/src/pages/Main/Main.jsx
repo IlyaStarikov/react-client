@@ -38,11 +38,7 @@ function Main() {
         .includes(searchingText))
   );
 
-  let filterNews = postsItems.filter((post) => findParams(post));
-  console.log(filterNews);
-  if (!searchingText) {
-    filterNews = postsItems;
-  }
+  const filterNews = postsItems.filter((post) => findParams(post));
 
   return (
     <>

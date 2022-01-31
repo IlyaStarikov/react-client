@@ -10,6 +10,6 @@ export const searchNews = (searchValue) => ({
 });
 
 export const filterNews = (filterValue) => ({
-  type: actionTypes.NEWS_SEARCH,
+  type: actionTypes.NEWS_FILTER,
   payload: filterValue,
 });
