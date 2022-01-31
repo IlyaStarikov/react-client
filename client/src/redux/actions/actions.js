@@ -4,10 +4,12 @@ export const getNews = () => ({
   type: actionTypes.NEWS_REQUESTED,
 });
 
-export const searchNews = (news, inputValue) => ({
+export const searchNews = (searchValue) => ({
   type: actionTypes.NEWS_SEARCH,
-  payload: {
-    news,
-    inputValue,
-  },
+  payload: searchValue,
+});
+
+export const filterNews = (filterValue) => ({
+  type: actionTypes.NEWS_SEARCH,
+  payload: filterValue,
 });

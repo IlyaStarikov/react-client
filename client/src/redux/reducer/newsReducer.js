@@ -1,13 +1,13 @@
 import {
-  NEWS_RECEIVED, NEWS_REQUESTED, NEWS_REJECTED, NEWS_SEARCH,
+  NEWS_RECEIVED, NEWS_REQUESTED, NEWS_REJECTED, NEWS_SEARCH, NEWS_FILTER, filterTypes,
 } from '../constants';
 
 const initialState = {
   fetching: false,
   news: [],
   error: null,
-  searchNews: [],
-  validation: false,
+  filterType: filterTypes.ALL,
+  searchText: '',
 };
 
 function reducerNews(state = initialState, action = {}) {
@@ -22,7 +22,11 @@ function reducerNews(state = initialState, action = {}) {
       };
     case NEWS_SEARCH:
       return {
-        ...state, searchNews: action.payload.news, validation: action.payload.inputValue,
+        ...state, searchText: action.payload,
+      };
+    case NEWS_FILTER:
+      return {
+        ...state, filterType: action.payload,
       };
     default:
       return state;
