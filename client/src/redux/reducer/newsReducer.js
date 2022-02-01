@@ -1,5 +1,10 @@
 import {
-  NEWS_RECEIVED, NEWS_REQUESTED, NEWS_REJECTED, NEWS_SEARCH, NEWS_FILTER, filterTypes,
+  NEWS_RECEIVED,
+  NEWS_REQUESTED,
+  NEWS_REJECTED,
+  NEWS_SEARCH_CHANGED,
+  NEWS_FILTER_TOGGLED,
+  filterTypes,
 } from '../constants';
 
 const initialState = {
@@ -20,11 +25,11 @@ function reducerNews(state = initialState, action = {}) {
       return {
         ...state, fetching: false, news: null, error: action.error,
       };
-    case NEWS_SEARCH:
+    case NEWS_SEARCH_CHANGED:
       return {
         ...state, searchText: action.payload,
       };
-    case NEWS_FILTER:
+    case NEWS_FILTER_TOGGLED:
       return {
         ...state, filterType: action.payload,
       };

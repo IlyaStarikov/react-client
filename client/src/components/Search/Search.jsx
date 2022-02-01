@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+
 import { filterNews, searchNews } from '../../redux/actions/actions';
 import { filterTypes } from '../../redux/constants';
 
@@ -17,16 +18,16 @@ function Search() {
   };
 
   return (
-    <label htmlFor="select">
+    <div className="search-block">
       <select onChange={handlerFilter} className="browser-default">
         <option value={filterTypes.ALL}>All</option>
-        <option value={filterTypes.TITLE}>Tag</option>
+        <option value={filterTypes.TAGS}>Tag</option>
         <option value={filterTypes.CREATOR}>Author</option>
       </select>
       <div className="input-field col s6">
-        <input onChange={handlerSearch} placeholder="Placeholder" id="first_name" type="text" className="validate" />
+        <input onChange={handlerSearch} placeholder="Placeholder" type="text" className="validate" />
       </div>
-    </label>
+    </div>
   );
 }
 
