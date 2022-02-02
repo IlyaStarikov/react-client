@@ -10,3 +10,8 @@ export const filterTypes = {
   TITLE: 'Title',
   CREATOR: 'Author',
 };
+
+export const authTypes = {
+  AUTH: 'auth',
+  REGISTRATION: 'registration',
+};
