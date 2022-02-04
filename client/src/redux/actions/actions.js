@@ -14,16 +14,12 @@ export const filterNews = (filterValue) => ({
   payload: filterValue,
 });
 
-export const authLogin = (payload) => ({
+export const authAction = (values, authType) => ({
   type: actionTypes.LOGIN_REQUESTED,
-  payload,
+  values,
+  authType,
 });
 
-export const authRegistration = (payload) => ({
-  type: actionTypes.REGISTRATION_REQUESTED,
-  payload,
-});
-
-export const authLogout = () => ({
-  type: actionTypes.LOGOUT_CLICKED,
+export const logoutAction = () => ({
+  type: actionTypes.LOGOUT_REQUESTED,
 });

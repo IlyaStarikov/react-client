@@ -9,7 +9,7 @@ import api from '../../api/api';
 
 function* loginSaga(action) {
   try {
-    const { data: response } = yield api.post('/auth/login', action.payload);
+    const { data: response } = yield api.post(`/auth/${action.authType}`, action.values);
     yield put({ type: actionTypes.LOGIN_RECEIVED, response });
     localStorage.setItem('token', response.token);
   } catch (error) {
@@ -17,17 +17,6 @@ function* loginSaga(action) {
   }
 }
 
-function* registrationSaga(action) {
-  try {
-    const { data: response } = yield api.post('/auth/registration', action.payload);
-    yield put({ type: actionTypes.REGISTRATION_RECEIVED, response });
-    localStorage.setItem('token', response.token);
-  } catch (error) {
-    yield put({ type: actionTypes.REGISTRATION_REJECTED, error: error.message });
-  }
-}
-
 export default function* watcherSaga() {
   yield takeEvery(actionTypes.LOGIN_REQUESTED, loginSaga);
-  yield takeEvery(actionTypes.REGISTRATION_REQUESTED, registrationSaga);
 }

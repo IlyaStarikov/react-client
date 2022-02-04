@@ -5,7 +5,7 @@ import { Navigate } from 'react-router';
 import { Formik, Field, Form } from 'formik';
 
 import { authTypes } from '../../redux/constants';
-import { authLogin, authRegistration } from '../../redux/actions/actions';
+import { authAction } from '../../redux/actions/actions';
 
 import './Auth.css';
 
@@ -20,11 +20,13 @@ function Auth({ type }) {
   } = useSelector((state) => state.login);
 
   const submitLogin = (values) => {
-    dispatch(authLogin(values));
-  };
-
-  const submitRegistration = (values) => {
-    dispatch(authRegistration(values));
+    let authType;
+    if (isAuth) {
+      authType = type;
+    } else {
+      authType = 'login';
+    }
+    dispatch(authAction(values, authType));
   };
 
   return (
@@ -36,7 +38,7 @@ function Auth({ type }) {
         initialValues={{
           name: '', email: '', login: '', password: '',
         }}
-        onSubmit={isAuth ? submitRegistration : submitLogin}
+        onSubmit={submitLogin}
       >
         <Form>
           {isAuth && <Field name="name" type="text" className="validate" placeholder="Name" />}
@@ -46,7 +48,7 @@ function Auth({ type }) {
           <button className="btn waves-effect waves-light" type="submit">{isAuth ? 'Register' : 'Login'}</button>
         </Form>
       </Formik>
-      {isLogin ? <Navigate to="/" /> : ''}
+      {isLogin && <Navigate to="/" />}
     </div>
   );
 }

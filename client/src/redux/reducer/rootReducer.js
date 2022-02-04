@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 
 import reducerNews from './newsReducer';
-import reducerLogin from './loginReducer';
+import reducerAuth from './authReducer';
 
 const rootReducer = combineReducers({
   posts: reducerNews,
-  login: reducerLogin,
+  login: reducerAuth,
 });
 
 export default rootReducer;
