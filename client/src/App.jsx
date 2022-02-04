@@ -10,17 +10,15 @@ import './App.css';
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <NavBar />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/user" element={<User />} />
-          <Route path="/auth" element={<Auth type="auth" />} />
-          <Route path="/registration" element={<Auth type="registration" />} />
-        </Routes>
-      </BrowserRouter>
-    </>
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/user" element={<User />} />
+        <Route path="/auth" element={<Auth type="auth" />} />
+        <Route path="/registration" element={<Auth type="registration" />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

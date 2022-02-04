@@ -1,8 +1,19 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+
+import { authLogout } from '../../redux/actions/actions';
 
 function NavBar() {
+  const dispatch = useDispatch();
   const { isLogin } = useSelector((state) => state.login);
+  const token = localStorage.getItem('token');
+  const auth = isLogin || token;
+
+  const logout = () => {
+    dispatch(authLogout());
+    localStorage.removeItem('token');
+  };
 
   return (
     <nav>
@@ -12,13 +23,13 @@ function NavBar() {
           Logo
         </a>
         <ul className="right hide-on-med-and-down">
-          <li><a href="/">News</a></li>
-          <li><a href="/user">Users</a></li>
-          {isLogin ? <li>Logout</li>
+          <li><Link to="/">News</Link></li>
+          <li><Link to="/user">Users</Link></li>
+          {auth ? <li><button onClick={logout} type="button">Logout</button></li>
             : (
               <>
-                <li><a href="/auth">Log in</a></li>
-                <li><a href="/registration">Sign in</a></li>
+                <li><Link to="/auth">Log in</Link></li>
+                <li><Link to="/registration">Sign in</Link></li>
               </>
             )}
         </ul>

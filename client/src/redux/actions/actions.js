@@ -18,3 +18,12 @@ export const authLogin = (payload) => ({
   type: actionTypes.LOGIN_REQUESTED,
   payload,
 });
+
+export const authRegistration = (payload) => ({
+  type: actionTypes.REGISTRATION_REQUESTED,
+  payload,
+});
+
+export const authLogout = () => ({
+  type: actionTypes.LOGOUT_CLICKED,
+});
