@@ -26,7 +26,7 @@ function Auth({ type }) {
   return (
     <div className="form">
       {fetching && <h3>Wait a minute...</h3>}
-      {error && <h4>{error}</h4>}
+      {!!error && <h4>{error}</h4>}
       <h1>{isAuth ? 'Sign in' : 'Login'}</h1>
       <Formik
         initialValues={{
