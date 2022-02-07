@@ -18,6 +18,6 @@ export const filterTypes = {
 };
 
 export const authTypes = {
-  AUTH: 'auth',
+  LOGIN: 'login',
   REGISTRATION: 'registration',
 };

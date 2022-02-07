@@ -5,9 +5,11 @@ import {
   LOGOUT_REQUESTED,
 } from '../constants';
 
+const token = localStorage.getItem('token');
+
 const initialState = {
   fetching: false,
-  isLogin: false,
+  isLogin: Boolean(token),
   error: null,
 };
 

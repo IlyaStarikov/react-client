@@ -6,9 +6,7 @@ import { logoutAction } from '../../redux/actions/actions';
 
 function NavBar() {
   const dispatch = useDispatch();
-  const { isLogin } = useSelector((state) => state.login);
-  const token = localStorage.getItem('token');
-  const userIsLogin = isLogin || token;
+  const userIsLogin = useSelector((state) => state.login.isLogin);
 
   const logout = () => {
     dispatch(logoutAction());
@@ -24,8 +22,14 @@ function NavBar() {
         </a>
         <ul className="right hide-on-med-and-down">
           <li><Link to="/">News</Link></li>
-          <li><Link to="/user">Users</Link></li>
-          {userIsLogin ? <li><button onClick={logout} type="button">Logout</button></li>
+          {userIsLogin
+            ? (
+              <>
+                <li><Link to="/user"><i className="material-icons">person</i></Link></li>
+                <li><Link to="/" onClick={logout} type="button">Logout</Link></li>
+
+              </>
+            )
             : (
               <>
                 <li><Link to="/auth">Log in</Link></li>

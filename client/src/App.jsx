@@ -15,7 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/user" element={<User />} />
-        <Route path="/auth" element={<Auth type="auth" />} />
+        <Route path="/auth" element={<Auth type="login" />} />
         <Route path="/registration" element={<Auth type="registration" />} />
       </Routes>
     </BrowserRouter>

@@ -20,13 +20,7 @@ function Auth({ type }) {
   } = useSelector((state) => state.login);
 
   const submitLogin = (values) => {
-    let authType;
-    if (isAuth) {
-      authType = type;
-    } else {
-      authType = 'login';
-    }
-    dispatch(authAction(values, authType));
+    dispatch(authAction(values, type));
   };
 
   return (

@@ -15,7 +15,7 @@ function Card({ post }) {
           <p>{ post.content }</p>
         </div>
         <div className="card-action">
-          <a href="123">This is a link</a>
+          <a href={`/users/${post.user.id}`}>{ post.user.name }</a>
         </div>
       </div>
     </div>
