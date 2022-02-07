@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 
 import { logoutAction } from '../../redux/actions/actions';
 
+import './NavBar.css';
+
 function NavBar() {
   const dispatch = useDispatch();
   const userIsLogin = useSelector((state) => state.login.isLogin);
