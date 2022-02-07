@@ -5,11 +5,11 @@ const filterMap = {
     content,
     header,
     tag,
-    user_id,
-  }) => [content, header, tag, user_id],
+    user,
+  }) => [content, header, tag, user.name],
   [filterTypes.TAGS]: ({ tag }) => [tag],
   [filterTypes.TITLE]: ({ header }) => [header],
-  [filterTypes.CREATOR]: ({ user_id }) => [user_id],
+  [filterTypes.CREATOR]: ({ user }) => [user.name],
 };
 
 export default filterMap;

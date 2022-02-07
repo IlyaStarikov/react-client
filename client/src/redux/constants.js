@@ -4,9 +4,20 @@ export const NEWS_REJECTED = 'NEWS_REJECTED';
 export const NEWS_SEARCH_CHANGED = 'NEWS_SEARCH_CHANGED';
 export const NEWS_FILTER_TOGGLED = 'NEWS_FILTER_TOGGLED';
 
+export const LOGIN_REQUESTED = 'LOGIN_REQUESTED';
+export const LOGIN_RECEIVED = 'LOGIN_RECEIVED';
+export const LOGIN_REJECTED = 'LOGIN_REJECTED';
+
+export const LOGOUT_REQUESTED = 'LOGOUT_REQUESTED';
+
 export const filterTypes = {
   ALL: 'All',
   TAGS: 'Tags',
   TITLE: 'Title',
   CREATOR: 'Author',
+};
+
+export const authTypes = {
+  LOGIN: 'login',
+  REGISTRATION: 'registration',
 };
