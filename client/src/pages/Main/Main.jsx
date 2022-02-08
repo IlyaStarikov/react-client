@@ -46,7 +46,7 @@ function Main() {
     <div className="wrapper">
       <Search />
       <div className="container flex">
-        {filterNews.map((post) => <Card post={post} key={post.id} />)}
+        {filterNews.map((post) => <Card isProfile="" post={post} key={post.id} />)}
         {!filterNews.length ? <div>Таких новостей нет :(</div> : ''}
       </div>
     </div>

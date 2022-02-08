@@ -27,7 +27,7 @@ function NavBar() {
           {userIsLogin
             ? (
               <>
-                <li><Link to="/user"><i className="material-icons">person</i></Link></li>
+                <li><Link to="/profile"><i className="material-icons">person</i></Link></li>
                 <li><Link to="/" onClick={logout} type="button">Logout</Link></li>
 
               </>

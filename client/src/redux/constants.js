@@ -10,6 +10,10 @@ export const LOGIN_REJECTED = 'LOGIN_REJECTED';
 
 export const LOGOUT_REQUESTED = 'LOGOUT_REQUESTED';
 
+export const USER_REQUESTED = 'USER_REQUESTED';
+export const USER_RECEIVED = 'USER_RECEIVED';
+export const USER_REJECTED = 'USER_REJECTED';
+
 export const filterTypes = {
   ALL: 'All',
   TAGS: 'Tags',
@@ -20,4 +24,9 @@ export const filterTypes = {
 export const authTypes = {
   LOGIN: 'login',
   REGISTRATION: 'registration',
+};
+
+export const pageType = {
+  USER: 'user',
+  PROFILE: 'profile',
 };

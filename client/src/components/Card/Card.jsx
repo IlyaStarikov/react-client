@@ -1,9 +1,10 @@
-import React from 'react';
-import { shape } from 'prop-types';
+import React, { memo } from 'react';
+import { Link } from 'react-router-dom';
+import { shape, string } from 'prop-types';
 
 import logo from '../../assets/123.jpg';
 
-function Card({ post }) {
+function Card({ post, isProfile }) {
   return (
     <div className="row">
       <div className="card">
@@ -15,7 +16,7 @@ function Card({ post }) {
           <p>{ post.content }</p>
         </div>
         <div className="card-action">
-          <a href={`/users/${post.user.id}`}>{ post.user.name }</a>
+          <Link to={`/users/${post.user_id}`}>{isProfile || post.user.name}</Link>
         </div>
       </div>
     </div>
@@ -24,6 +25,7 @@ function Card({ post }) {
 
 Card.propTypes = {
   post: shape({}).isRequired,
+  isProfile: string.isRequired,
 };
 
-export default React.memo(Card);
+export default memo(Card);
