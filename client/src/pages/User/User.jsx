@@ -23,10 +23,9 @@ function User({ type }) {
 
   useEffect(() => {
     if (isProfile) {
-      const token = localStorage.getItem('token');
-      dispatch(getUser(type, token));
+      dispatch(getUser(type));
     } else {
-      dispatch(getUser(type, id));
+      dispatch(getUser(id));
     }
   }, [dispatch, id, type, isProfile]);
 
