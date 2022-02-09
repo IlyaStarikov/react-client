@@ -23,3 +23,8 @@ export const authAction = (values, authType) => ({
 export const logoutAction = () => ({
   type: actionTypes.LOGOUT_REQUESTED,
 });
+
+export const getUser = (userId) => ({
+  type: actionTypes.USER_REQUESTED,
+  userId,
+});

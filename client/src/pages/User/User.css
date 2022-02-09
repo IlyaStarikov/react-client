@@ -1,0 +1,47 @@
+.container__flex {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding-top: 100px;
+    padding-left: 80px;
+
+}
+
+.user {
+    width: 300px;
+    position: fixed;
+}
+
+.news {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 500px;
+}
+
+#button-edit {
+    position: absolute;
+    top: 230px;
+    right: 20px;
+}
+
+.avatar {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+}
+
+.add {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 277px;
+}
+
+.fetching, .error {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

@@ -6,6 +6,8 @@ import Search from '../../components/Search/Search';
 import { getNews } from '../../redux/actions/actions';
 import filterMap from '../../utils/searchUtil';
 
+import './Main.css';
+
 function Main() {
   const dispatch = useDispatch();
 
@@ -41,13 +43,13 @@ function Main() {
   const filterNews = postsItems.filter((post) => findParams(post));
 
   return (
-    <>
+    <div className="wrapper">
       <Search />
       <div className="container flex">
         {filterNews.map((post) => <Card post={post} key={post.id} />)}
         {!filterNews.length ? <div>Таких новостей нет :(</div> : ''}
       </div>
-    </>
+    </div>
   );
 }
 

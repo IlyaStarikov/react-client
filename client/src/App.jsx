@@ -14,7 +14,8 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/user" element={<User />} />
+        <Route path="/profile" element={<User type="profile" />} />
+        <Route path="/users/:id" element={<User type="user" />} />
         <Route path="/auth" element={<Auth type="login" />} />
         <Route path="/registration" element={<Auth type="registration" />} />
       </Routes>

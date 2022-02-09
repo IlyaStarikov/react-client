@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 
 import { logoutAction } from '../../redux/actions/actions';
 
+import './NavBar.css';
+
 function NavBar() {
   const dispatch = useDispatch();
   const userIsLogin = useSelector((state) => state.login.isLogin);
@@ -25,7 +27,7 @@ function NavBar() {
           {userIsLogin
             ? (
               <>
-                <li><Link to="/user"><i className="material-icons">person</i></Link></li>
+                <li><Link to="/profile"><i className="material-icons">person</i></Link></li>
                 <li><Link to="/" onClick={logout} type="button">Logout</Link></li>
 
               </>
