@@ -21,10 +21,12 @@ function reducerUser(state = initialState, action = {}) {
         userNews: action.response.news,
       };
     case USER_REQUESTED:
-      return { ...state, fetching: true, error: null };
+      return {
+        ...state, fetching: true, error: null, userNews: [],
+      };
     case USER_REJECTED:
       return {
-        ...state, fetching: false, user: null, error: action.error,
+        ...state, fetching: false, user: null, error: action.error, userNews: [],
       };
     default:
       return state;

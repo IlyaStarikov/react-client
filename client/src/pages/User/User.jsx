@@ -11,8 +11,8 @@ import './User.css';
 
 function User({ type }) {
   const dispatch = useDispatch();
-  const isProfile = type === 'profile';
   const { id } = useParams();
+  const isProfile = type === 'profile';
 
   const {
     fetching,
@@ -23,11 +23,11 @@ function User({ type }) {
 
   useEffect(() => {
     if (isProfile) {
-      dispatch(getUser(type));
+      dispatch(getUser());
     } else {
       dispatch(getUser(id));
     }
-  }, [dispatch, id, type, isProfile]);
+  }, [dispatch, id, isProfile]);
 
   if (fetching) {
     return (

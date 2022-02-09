@@ -29,7 +29,7 @@ Card.propTypes = {
 };
 
 Card.defaultProps = {
-  nameInProfile: '',
+  nameInProfile: null,
 };
 
 export default memo(Card);

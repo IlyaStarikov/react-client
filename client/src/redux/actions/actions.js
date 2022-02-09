@@ -24,7 +24,7 @@ export const logoutAction = () => ({
   type: actionTypes.LOGOUT_REQUESTED,
 });
 
-export const getUser = (currentValue) => ({
+export const getUser = (userId) => ({
   type: actionTypes.USER_REQUESTED,
-  currentValue,
+  userId,
 });
