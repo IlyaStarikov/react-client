@@ -5,7 +5,7 @@ import { string } from 'prop-types';
 
 import { getUser } from '../../redux/actions/actions';
 import Card from '../../components/Card/Card';
-import logo from '../../assets/123.jpg';
+import logo from '../../assets/logo.jpg';
 
 import './User.css';
 
