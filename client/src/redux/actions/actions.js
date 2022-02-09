@@ -24,7 +24,7 @@ export const logoutAction = () => ({
   type: actionTypes.LOGOUT_REQUESTED,
 });
 
-export const getUser = (pageType) => ({
+export const getUser = (currentValue) => ({
   type: actionTypes.USER_REQUESTED,
-  pageType,
+  currentValue,
 });

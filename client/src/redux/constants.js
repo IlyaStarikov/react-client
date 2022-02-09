@@ -27,6 +27,5 @@ export const authTypes = {
 };
 
 export const pageType = {
-  USER: 'user',
   PROFILE: 'profile',
 };

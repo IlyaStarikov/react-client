@@ -4,7 +4,7 @@ import { shape, string } from 'prop-types';
 
 import logo from '../../assets/123.jpg';
 
-function Card({ post, isProfile }) {
+function Card({ post, nameInProfile }) {
   return (
     <div className="row">
       <div className="card">
@@ -16,7 +16,7 @@ function Card({ post, isProfile }) {
           <p>{ post.content }</p>
         </div>
         <div className="card-action">
-          <Link to={`/users/${post.user_id}`}>{isProfile || post.user.name}</Link>
+          <Link to={`/users/${post.user_id}`}>{nameInProfile || post.user.name}</Link>
         </div>
       </div>
     </div>
@@ -25,7 +25,11 @@ function Card({ post, isProfile }) {
 
 Card.propTypes = {
   post: shape({}).isRequired,
-  isProfile: string.isRequired,
+  nameInProfile: string,
+};
+
+Card.defaultProps = {
+  nameInProfile: '',
 };
 
 export default memo(Card);

@@ -15,10 +15,10 @@ function User({ type }) {
   const { id } = useParams();
 
   const {
-    // fetching,
+    fetching,
     user,
     userNews,
-    // error,
+    error,
   } = useSelector((state) => state.user);
 
   useEffect(() => {
@@ -28,6 +28,23 @@ function User({ type }) {
       dispatch(getUser(id));
     }
   }, [dispatch, id, type, isProfile]);
+
+  if (fetching) {
+    return (
+      <h2 className="fetching">
+        Loading...
+      </h2>
+    );
+  }
+
+  if (error) {
+    return (
+      <h2 className="error">
+        Error:
+        {error}
+      </h2>
+    );
+  }
 
   return (
     <div className="container">
@@ -52,7 +69,7 @@ function User({ type }) {
           )}
         </div>
         <div className="news">
-          {userNews?.map((post) => <Card isProfile={user.name} post={post} key={post.id} />)}
+          {userNews?.map((post) => <Card nameInProfile={user.name} post={post} key={post.id} />)}
         </div>
       </div>
     </div>
