@@ -8,6 +8,7 @@ import Card from '../../components/Card/Card';
 import logo from '../../assets/logo.jpg';
 
 import './User.css';
+import Modal from '../../components/Modal/Modal';
 
 function User({ type }) {
   const dispatch = useDispatch();
@@ -55,14 +56,10 @@ function User({ type }) {
           <p>User NickName</p>
           {isProfile && (
             <>
-              <button id="button-edit" type="button" className="btn-floating btn-large waves-effect waves-light red">
-                <i className="material-icons">edit</i>
-              </button>
+              <Modal type="edit" />
               <p className="add">
                 Add News
-                <button type="button" className="btn-floating btn-large waves-effect waves-light red">
-                  <i className="material-icons">add</i>
-                </button>
+                <Modal type="add" />
               </p>
             </>
 
