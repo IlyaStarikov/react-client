@@ -16,6 +16,17 @@ function* getNewsSaga() {
   }
 }
 
+function* addNewsSaga(action) {
+  try {
+    const token = localStorage.getItem('token');
+    const { data: response } = yield api.post('/news', { body: action.payload, headers: { Authorization: token } });
+    yield put({ type: actionTypes.NEWS_ADD_RECEIVED, response });
+  } catch (error) {
+    yield put({ type: actionTypes.NEWS_ADD_REJECTED, error });
+  }
+}
+
 export default function* watcherSaga() {
   yield takeEvery(actionTypes.NEWS_REQUESTED, getNewsSaga);
+  yield takeEvery(actionTypes.NEWS_ADD_REQUESTED, addNewsSaga);
 }
