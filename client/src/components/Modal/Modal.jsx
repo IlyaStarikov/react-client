@@ -1,9 +1,11 @@
 import * as React from 'react';
+import { memo } from 'react';
 import { styled, Box } from '@mui/system';
 import ModalUnstyled from '@mui/base/ModalUnstyled';
 import { string } from 'prop-types';
 import { Formik, Field, Form } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
+import { ImageInput } from 'formik-file-and-image-input/lib';
 
 import './Modal.css';
 import { addNews } from '../../redux/actions/actions';
@@ -50,14 +52,12 @@ function Modal({ type }) {
   const submitLogin = (values) => {
     dispatch(addNews(values));
     console.log(values);
-    handleClose();
   };
 
-  const { error } = useSelector((state) => state.posts);
-  console.log(error);
+  const imageFormats = ['image/png', 'image/svg', 'image/jpeg'];
 
   return (
-    <div>
+    <>
       <button onClick={handleOpen} id={type} type="button" className="btn-floating btn-large waves-effect waves-light red">
         <i className="material-icons">{type}</i>
       </button>
@@ -71,7 +71,7 @@ function Modal({ type }) {
         <Box sx={style}>
           <Formik
             initialValues={{
-              header: '', content: '', tag: '', picture: '', name: '', login: '', avatar: '',
+              header: '', content: '', tag: '', picture: null, name: '', login: '', avatar: null,
             }}
             onSubmit={submitLogin}
           >
@@ -80,16 +80,16 @@ function Modal({ type }) {
               {isAdd && <Field name="header" type="text" className="validate" placeholder="News title" />}
               {isAdd && <Field name="content" type="text" className="validate" placeholder="News content" />}
               {isAdd && <Field name="tag" type="text" className="validate" placeholder="Tag" />}
-              {isAdd && <Field name="picture" type="file" className="validate file" placeholder="Picture" />}
+              {isAdd && <ImageInput name="picture" className="validate file" validFormats={imageFormats} />}
               {!isAdd && <Field name="name" type="text" className="validate" placeholder="Name" />}
               {!isAdd && <Field name="login" type="text" className="validate" placeholder="Nickname" />}
-              {!isAdd && <Field name="avatar" type="file" className="validate file" placeholder="Avatar" />}
+              {!isAdd && <ImageInput name="avatar" className="validate file" validFormats={imageFormats} />}
               <button className="btn waves-effect waves-light" type="submit">{isAdd ? 'Add' : 'Save'}</button>
             </Form>
           </Formik>
         </Box>
       </StyledModal>
-    </div>
+    </>
   );
 }
 
@@ -97,4 +97,4 @@ Modal.propTypes = {
   type: string.isRequired,
 };
 
-export default Modal;
+export default memo(Modal);
