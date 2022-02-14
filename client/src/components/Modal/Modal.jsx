@@ -46,6 +46,7 @@ const style = {
 function Modal({ type }) {
   const dispatch = useDispatch();
   const isCreation = type === 'add';
+  const classEdit = `btn-floating btn-large waves-effect waves-light red ${type}`;
   const imageFormats = ['image/png', 'image/svg', 'image/jpeg'];
   const [open, setOpen] = useState(false);
   const [error, setError] = useState(false);
@@ -70,6 +71,7 @@ function Modal({ type }) {
   const submitLogin = (values) => {
     if (validateForm(values)) {
       dispatch(addNews(values));
+      setError(false);
     } else {
       setError(true);
     }
@@ -77,7 +79,7 @@ function Modal({ type }) {
 
   return (
     <>
-      <button onClick={handleOpen} id={type} type="button" className="btn-floating btn-large waves-effect waves-light red">
+      <button onClick={handleOpen} type="button" className={classEdit}>
         <i className="material-icons">{type}</i>
       </button>
       <StyledModal

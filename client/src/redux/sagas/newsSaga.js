@@ -29,8 +29,7 @@ function* addNewsSaga({ payload }) {
     formData.append('content', content);
     formData.append('tag', tag);
     formData.append('picture', picture);
-    const token = localStorage.getItem('token');
-    yield api.post('/news', formData, { headers: { Authorization: token, 'Content-Type': 'multipart/form-data' } });
+    yield api.post('/news', formData, { headers: { 'Content-Type': 'multipart/form-data' } });
     yield put({ type: actionTypes.USER_REQUESTED });
   } catch (error) {
     yield put({ type: actionTypes.NEWS_ADD_REJECTED, error });
