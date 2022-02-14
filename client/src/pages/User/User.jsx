@@ -6,9 +6,9 @@ import { string } from 'prop-types';
 import { getUser } from '../../redux/actions/actions';
 import Card from '../../components/Card/Card';
 import logo from '../../assets/logo.jpg';
+import Modal from '../../components/Modal/Modal';
 
 import './User.css';
-import Modal from '../../components/Modal/Modal';
 
 function User({ type }) {
   const dispatch = useDispatch();

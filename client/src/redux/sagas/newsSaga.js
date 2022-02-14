@@ -18,11 +18,17 @@ function* getNewsSaga() {
 
 function* addNewsSaga({ payload }) {
   try {
+    const {
+      header,
+      content,
+      tag,
+      picture,
+    } = payload;
     const formData = new FormData();
-    formData.append('header', payload.header);
-    formData.append('content', payload.content);
-    formData.append('tag', payload.tag);
-    formData.append('picture', payload.picture);
+    formData.append('header', header);
+    formData.append('content', content);
+    formData.append('tag', tag);
+    formData.append('picture', picture);
     const token = localStorage.getItem('token');
     yield api.post('/news', formData, { headers: { Authorization: token, 'Content-Type': 'multipart/form-data' } });
     yield put({ type: actionTypes.USER_REQUESTED });

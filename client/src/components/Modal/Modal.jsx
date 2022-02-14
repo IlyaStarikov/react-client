@@ -1,14 +1,15 @@
-import * as React from 'react';
-import { memo } from 'react';
+import React, { memo, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Formik, Field, Form } from 'formik';
+import { ImageInput } from 'formik-file-and-image-input/lib';
+import { string } from 'prop-types';
+
 import { styled, Box } from '@mui/system';
 import ModalUnstyled from '@mui/base/ModalUnstyled';
-import { string } from 'prop-types';
-import { Formik, Field, Form } from 'formik';
-import { useDispatch } from 'react-redux';
-import { ImageInput } from 'formik-file-and-image-input/lib';
+
+import { addNews } from '../../redux/actions/actions';
 
 import './Modal.css';
-import { addNews } from '../../redux/actions/actions';
 
 const StyledModal = styled(ModalUnstyled)`
   position: fixed;
@@ -43,34 +44,35 @@ const style = {
 };
 
 function Modal({ type }) {
-  const isAdd = type === 'add';
   const dispatch = useDispatch();
-  const [open, setOpen] = React.useState(false);
-  const [error, setError] = React.useState(false);
+  const isCreation = type === 'add';
+  const imageFormats = ['image/png', 'image/svg', 'image/jpeg'];
+  const [open, setOpen] = useState(false);
+  const [error, setError] = useState(false);
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const validateForm = (values) => {
-    const fieldsAdd = [values.header, values.content, values.tag, values.picture];
-    const fieldsEdit = [values.name, values.login];
-    if (isAdd) {
-      return fieldsAdd.every((elem) => Boolean(elem));
-    }
-    return fieldsEdit.every((elem) => Boolean(elem));
+  const validateForm = ({
+    header,
+    content,
+    tag,
+    picture,
+    name,
+    login,
+  }) => {
+    const addFields = [header, content, tag, picture];
+    const editFields = [name, login];
+    const currentFields = isCreation ? addFields : editFields;
+    return currentFields.every((elem) => Boolean(elem));
   };
 
   const submitLogin = (values) => {
     if (validateForm(values)) {
-      if (isAdd) {
-        dispatch(addNews(values));
-      } else {
-        dispatch(addNews(values));
-      }
+      dispatch(addNews(values));
     }
     setError(true);
   };
-
-  const imageFormats = ['image/png', 'image/svg', 'image/jpeg'];
 
   return (
     <>
@@ -87,21 +89,36 @@ function Modal({ type }) {
         <Box sx={style}>
           <Formik
             initialValues={{
-              header: '', content: '', tag: '', picture: null, name: '', login: '', avatar: null,
+              header: '',
+              content: '',
+              tag: '',
+              picture: null,
+              name: '',
+              login: '',
+              avatar: null,
             }}
             onSubmit={submitLogin}
           >
             <Form>
               {error && <h6>Some fields are empty!</h6>}
-              <h5>{isAdd ? 'Add news' : 'Update profile'}</h5>
-              {isAdd && <Field name="header" type="text" className="validate" placeholder="News title" />}
-              {isAdd && <Field name="content" type="text" className="validate" placeholder="News content" />}
-              {isAdd && <Field name="tag" type="text" className="validate" placeholder="Tag" />}
-              {isAdd && <ImageInput name="picture" className="validate file" validFormats={imageFormats} />}
-              {!isAdd && <Field name="name" type="text" className="validate" placeholder="Name" />}
-              {!isAdd && <Field name="login" type="text" className="validate" placeholder="Nickname" />}
-              {!isAdd && <ImageInput name="avatar" className="validate file" validFormats={imageFormats} />}
-              <button className="btn waves-effect waves-light" type="submit">{isAdd ? 'Add' : 'Save'}</button>
+              <h5>{isCreation ? 'Add news' : 'Update profile'}</h5>
+              {isCreation
+                && (
+                <>
+                  <Field name="header" type="text" className="validate" placeholder="News title" />
+                  <Field name="content" type="text" className="validate" placeholder="News content" />
+                  <Field name="tag" type="text" className="validate" placeholder="Tag" />
+                  <ImageInput name="picture" className="validate file" validFormats={imageFormats} />
+                </>
+                )}
+              {!isCreation && (
+              <>
+                <Field name="name" type="text" className="validate" placeholder="Name" />
+                <Field name="login" type="text" className="validate" placeholder="Nickname" />
+                <ImageInput name="avatar" className="validate file" validFormats={imageFormats} />
+              </>
+              )}
+              <button className="btn waves-effect waves-light" type="submit">{isCreation ? 'Add' : 'Save'}</button>
             </Form>
           </Formik>
         </Box>
