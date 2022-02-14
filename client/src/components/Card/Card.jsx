@@ -2,8 +2,6 @@ import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { shape, string } from 'prop-types';
 
-import logo from '../../assets/logo.jpg';
-
 function Card({ post, nameInProfile }) {
   return (
     <div className="row">

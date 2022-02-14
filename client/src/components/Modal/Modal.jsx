@@ -4,7 +4,7 @@ import { styled, Box } from '@mui/system';
 import ModalUnstyled from '@mui/base/ModalUnstyled';
 import { string } from 'prop-types';
 import { Formik, Field, Form } from 'formik';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { ImageInput } from 'formik-file-and-image-input/lib';
 
 import './Modal.css';
@@ -46,12 +46,28 @@ function Modal({ type }) {
   const isAdd = type === 'add';
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
+  const [error, setError] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const validateForm = (values) => {
+    const fieldsAdd = [values.header, values.content, values.tag, values.picture];
+    const fieldsEdit = [values.name, values.login];
+    if (isAdd) {
+      return fieldsAdd.every((elem) => Boolean(elem));
+    }
+    return fieldsEdit.every((elem) => Boolean(elem));
+  };
+
   const submitLogin = (values) => {
-    dispatch(addNews(values));
-    console.log(values);
+    if (validateForm(values)) {
+      if (isAdd) {
+        dispatch(addNews(values));
+      } else {
+        dispatch(addNews(values));
+      }
+    }
+    setError(true);
   };
 
   const imageFormats = ['image/png', 'image/svg', 'image/jpeg'];
@@ -76,6 +92,7 @@ function Modal({ type }) {
             onSubmit={submitLogin}
           >
             <Form>
+              {error && <h6>Some fields are empty!</h6>}
               <h5>{isAdd ? 'Add news' : 'Update profile'}</h5>
               {isAdd && <Field name="header" type="text" className="validate" placeholder="News title" />}
               {isAdd && <Field name="content" type="text" className="validate" placeholder="News content" />}
