@@ -70,8 +70,9 @@ function Modal({ type }) {
   const submitLogin = (values) => {
     if (validateForm(values)) {
       dispatch(addNews(values));
+    } else {
+      setError(true);
     }
-    setError(true);
   };
 
   return (
