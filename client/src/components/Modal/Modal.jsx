@@ -106,21 +106,21 @@ function Modal({ type }) {
               {error && <h6>Some fields are empty!</h6>}
               <h5>{isCreation ? 'Add news' : 'Update profile'}</h5>
               {isCreation
-                && (
-                <>
-                  <Field name="header" type="text" className="validate" placeholder="News title" />
-                  <Field name="content" type="text" className="validate" placeholder="News content" />
-                  <Field name="tag" type="text" className="validate" placeholder="Tag" />
-                  <ImageInput name="picture" className="validate file" validFormats={imageFormats} />
-                </>
+                ? (
+                  <>
+                    <Field name="header" type="text" className="validate" placeholder="News title" />
+                    <Field name="content" type="text" className="validate" placeholder="News content" />
+                    <Field name="tag" type="text" className="validate" placeholder="Tag" />
+                    <ImageInput name="picture" className="validate file" validFormats={imageFormats} />
+                  </>
+                )
+                : (
+                  <>
+                    <Field name="name" type="text" className="validate" placeholder="Name" />
+                    <Field name="login" type="text" className="validate" placeholder="Nickname" />
+                    <ImageInput name="avatar" className="validate file" validFormats={imageFormats} />
+                  </>
                 )}
-              {!isCreation && (
-              <>
-                <Field name="name" type="text" className="validate" placeholder="Name" />
-                <Field name="login" type="text" className="validate" placeholder="Nickname" />
-                <ImageInput name="avatar" className="validate file" validFormats={imageFormats} />
-              </>
-              )}
               <button className="btn waves-effect waves-light" type="submit">{isCreation ? 'Add' : 'Save'}</button>
             </Form>
           </Formik>
