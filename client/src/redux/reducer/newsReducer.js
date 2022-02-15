@@ -4,6 +4,9 @@ import {
   NEWS_REJECTED,
   NEWS_SEARCH_CHANGED,
   NEWS_FILTER_TOGGLED,
+  NEWS_ADD_RECEIVED,
+  NEWS_ADD_REQUESTED,
+  NEWS_ADD_REJECTED,
   filterTypes,
 } from '../constants';
 
@@ -13,6 +16,7 @@ const initialState = {
   error: null,
   filterType: filterTypes.ALL,
   searchText: '',
+  isAdd: false,
 };
 
 function reducerNews(state = initialState, action = {}) {
@@ -32,6 +36,18 @@ function reducerNews(state = initialState, action = {}) {
     case NEWS_FILTER_TOGGLED:
       return {
         ...state, filterType: action.payload,
+      };
+    case NEWS_ADD_RECEIVED:
+      return {
+        ...state, fetching: false, error: null, isAdd: true,
+      };
+    case NEWS_ADD_REQUESTED:
+      return {
+        ...state, fetching: true, error: null, isAdd: false,
+      };
+    case NEWS_ADD_REJECTED:
+      return {
+        ...state, fetching: false, news: null, error: action.error, isAdd: false,
       };
     default:
       return state;

@@ -16,6 +16,27 @@ function* getNewsSaga() {
   }
 }
 
+function* addNewsSaga({ payload }) {
+  try {
+    const {
+      header,
+      content,
+      tag,
+      picture,
+    } = payload;
+    const formData = new FormData();
+    formData.append('header', header);
+    formData.append('content', content);
+    formData.append('tag', tag);
+    formData.append('picture', picture);
+    yield api.post('/news', formData, { headers: { 'Content-Type': 'multipart/form-data' } });
+    yield put({ type: actionTypes.USER_REQUESTED });
+  } catch (error) {
+    yield put({ type: actionTypes.NEWS_ADD_REJECTED, error });
+  }
+}
+
 export default function* watcherSaga() {
   yield takeEvery(actionTypes.NEWS_REQUESTED, getNewsSaga);
+  yield takeEvery(actionTypes.NEWS_ADD_REQUESTED, addNewsSaga);
 }

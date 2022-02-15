@@ -9,8 +9,7 @@ import api from '../../api/api';
 
 function* getUserSaga({ userId = 'profile' }) {
   try {
-    const token = localStorage.getItem('token');
-    const { data: response } = yield api.get(`/users/${userId}`, { headers: { Authorization: token } });
+    const { data: response } = yield api.get(`/users/${userId}`);
     yield put({ type: actionTypes.USER_RECEIVED, response });
   } catch (error) {
     yield put({ type: actionTypes.USER_REJECTED, error: error.message });

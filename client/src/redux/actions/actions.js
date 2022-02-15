@@ -28,3 +28,8 @@ export const getUser = (userId) => ({
   type: actionTypes.USER_REQUESTED,
   userId,
 });
+
+export const addNews = (payload) => ({
+  type: actionTypes.NEWS_ADD_REQUESTED,
+  payload,
+});

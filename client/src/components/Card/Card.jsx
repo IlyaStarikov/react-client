@@ -2,14 +2,12 @@ import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { shape, string } from 'prop-types';
 
-import logo from '../../assets/logo.jpg';
-
 function Card({ post, nameInProfile }) {
   return (
     <div className="row">
       <div className="card">
         <div className="card-image">
-          <img alt="" src={logo} />
+          <img alt="" src={`${process.env.REACT_APP_API_URL}/${post.picture}`} />
           <span className="card-title">{ post.header }</span>
         </div>
         <div className="card-content">
