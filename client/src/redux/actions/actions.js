@@ -33,3 +33,8 @@ export const addNews = (payload) => ({
   type: actionTypes.NEWS_ADD_REQUESTED,
   payload,
 });
+
+export const editProfile = (payload) => ({
+  type: actionTypes.USER_UPDATE_REQUESTED,
+  payload,
+});

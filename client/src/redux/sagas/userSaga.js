@@ -16,6 +16,25 @@ function* getUserSaga({ userId = 'profile' }) {
   }
 }
 
+function* updateUserSaga({ payload }) {
+  try {
+    const {
+      name,
+      login,
+      avatar,
+    } = payload;
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('login', login);
+    formData.append('avatar', avatar);
+    yield api.patch('/users/profile', formData);
+    yield put({ type: actionTypes.USER_REQUESTED });
+  } catch (error) {
+    yield put({ type: actionTypes.USER_UPDATE_REJECTED, error: error.message });
+  }
+}
+
 export default function* watcherSaga() {
   yield takeEvery(actionTypes.USER_REQUESTED, getUserSaga);
+  yield takeEvery(actionTypes.USER_UPDATE_REQUESTED, updateUserSaga);
 }

@@ -7,7 +7,7 @@ import { string } from 'prop-types';
 import { styled, Box } from '@mui/system';
 import ModalUnstyled from '@mui/base/ModalUnstyled';
 
-import { addNews } from '../../redux/actions/actions';
+import { addNews, editProfile } from '../../redux/actions/actions';
 
 import './Modal.css';
 
@@ -61,16 +61,18 @@ function Modal({ type }) {
     picture,
     name,
     login,
+    avatar,
   }) => {
     const addFields = [header, content, tag, picture];
-    const editFields = [name, login];
+    const editFields = [name, login, avatar];
     const currentFields = isCreation ? addFields : editFields;
     return currentFields.every((elem) => Boolean(elem));
   };
 
   const submitLogin = (values) => {
     if (validateForm(values)) {
-      dispatch(addNews(values));
+      const currentValue = isCreation ? addNews(values) : editProfile(values);
+      dispatch(currentValue);
       setError(false);
     } else {
       setError(true);
