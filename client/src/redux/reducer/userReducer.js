@@ -4,7 +4,6 @@ import {
   USER_REJECTED,
   USER_UPDATE_REQUESTED,
   USER_UPDATE_REJECTED,
-  USER_UPDATE_RECEIVED,
 } from '../constants';
 
 const initialState = {
@@ -38,10 +37,6 @@ function reducerUser(state = initialState, action = {}) {
     case USER_UPDATE_REJECTED:
       return {
         ...state, fetching: false, error: action.error,
-      };
-    case USER_UPDATE_RECEIVED:
-      return {
-        ...state, fetching: false, error: null,
       };
     default:
       return state;

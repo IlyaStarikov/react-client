@@ -28,7 +28,6 @@ function* updateUserSaga({ payload }) {
     formData.append('login', login);
     formData.append('avatar', avatar);
     yield api.patch('/users/profile', formData);
-    yield put({ type: actionTypes.USER_UPDATE_RECEIVED });
     yield put({ type: actionTypes.USER_REQUESTED });
   } catch (error) {
     yield put({ type: actionTypes.USER_UPDATE_REJECTED, error: error.message });
