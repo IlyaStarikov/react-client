@@ -1,0 +1,5 @@
+.card-action.card-tag {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

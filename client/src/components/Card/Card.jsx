@@ -2,6 +2,8 @@ import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { shape, string } from 'prop-types';
 
+import './Card.css';
+
 function Card({ post, nameInProfile }) {
   return (
     <div className="row">
@@ -13,8 +15,9 @@ function Card({ post, nameInProfile }) {
         <div className="card-content">
           <p>{ post.content }</p>
         </div>
-        <div className="card-action">
+        <div className="card-action card-tag">
           <Link to={`/users/${post.user_id}`}>{nameInProfile || post.user.name}</Link>
+          <p>{ post.tag }</p>
         </div>
       </div>
     </div>

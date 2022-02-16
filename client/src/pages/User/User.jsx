@@ -22,6 +22,8 @@ function User({ type }) {
     error,
   } = useSelector((state) => state.user);
 
+  const profilePhoto = user.avatar ? `${process.env.REACT_APP_API_URL}/${user.avatar}` : logo;
+
   useEffect(() => {
     if (isProfile) {
       dispatch(getUser());
@@ -51,9 +53,9 @@ function User({ type }) {
     <div className="container">
       <div className="container__flex">
         <div className="user">
-          <img className="avatar" alt="" src={logo} />
+          <img className="avatar" alt="" src={profilePhoto} />
           <p>{user.name}</p>
-          <p>User NickName</p>
+          <p>{user.login}</p>
           {isProfile && (
             <>
               <Modal type="edit" />

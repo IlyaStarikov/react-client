@@ -16,6 +16,8 @@ export const LOGOUT_REQUESTED = 'LOGOUT_REQUESTED';
 export const USER_REQUESTED = 'USER_REQUESTED';
 export const USER_RECEIVED = 'USER_RECEIVED';
 export const USER_REJECTED = 'USER_REJECTED';
+export const USER_UPDATE_REQUESTED = 'USER_UPDATE_REQUESTED';
+export const USER_UPDATE_REJECTED = 'USER_UPDATE_REJECTED';
 
 export const filterTypes = {
   ALL: 'All',
