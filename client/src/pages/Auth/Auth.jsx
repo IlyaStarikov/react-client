@@ -27,10 +27,10 @@ function Auth({ type }) {
     name,
     login,
   }) => {
-    const loginFields = [name, login];
+    const loginFields = [email, password];
     const registrationFields = [name, login, password, email];
     const currentFields = isAuth ? registrationFields : loginFields;
-    return currentFields.every((elem) => Boolean(elem.trim()));
+    return currentFields.every((elem) => Boolean(elem));
   };
 
   const submitLogin = (values) => {
@@ -62,7 +62,7 @@ function Auth({ type }) {
           <button className="btn waves-effect waves-light" type="submit">{isAuth ? 'Register' : 'Login'}</button>
         </Form>
       </Formik>
-      {isLogin && <Navigate to="/" />}
+      {isLogin && <Navigate to="/profile" />}
     </div>
   );
 }
