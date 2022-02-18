@@ -9,7 +9,7 @@ function Card({ post, nameInProfile }) {
     <div className="row">
       <div className="card">
         <div className="card-image">
-          <img alt="" src={`${process.env.REACT_APP_API_URL}/${post.picture}`} />
+          <img className="card-image__image image" alt="" src={`${process.env.REACT_APP_API_URL}/${post.picture}`} />
           <span className="card-title">{ post.header }</span>
         </div>
         <div className="card-content">

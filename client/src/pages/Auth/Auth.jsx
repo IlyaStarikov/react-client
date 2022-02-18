@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import { string } from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router';
@@ -13,19 +13,39 @@ function Auth({ type }) {
   const dispatch = useDispatch();
   const isAuth = type === authTypes.REGISTRATION;
 
+  const [errorValidation, setErrorValidation] = useState(false);
+
   const {
     fetching,
     isLogin,
     error,
   } = useSelector((state) => state.login);
 
+  const validateForm = ({
+    email,
+    password,
+    name,
+    login,
+  }) => {
+    const loginFields = [name, login];
+    const registrationFields = [name, login, password, email];
+    const currentFields = isAuth ? registrationFields : loginFields;
+    return currentFields.every((elem) => Boolean(elem.trim()));
+  };
+
   const submitLogin = (values) => {
-    dispatch(authAction(values, type));
+    if (validateForm(values)) {
+      setErrorValidation(false);
+      dispatch(authAction(values, type));
+    } else {
+      setErrorValidation(true);
+    }
   };
 
   return (
     <div className="form">
       {fetching && <h3>Wait a minute...</h3>}
+      {errorValidation && <h3>Some fields are empty</h3>}
       {!!error && <h4>{error}</h4>}
       <h1>{isAuth ? 'Sign in' : 'Login'}</h1>
       <Formik

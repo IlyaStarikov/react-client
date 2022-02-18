@@ -3,3 +3,8 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.card-image__image.image {
+    height: 250px;
+    object-fit: contain;
+}
