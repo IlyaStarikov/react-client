@@ -19,13 +19,13 @@ function Search() {
 
   return (
     <div className="search-block">
-      <select onChange={handlerFilter} className="browser-default">
+      <select data-testid="search-select" onChange={handlerFilter} className="browser-default">
         <option value={filterTypes.ALL}>All</option>
         <option value={filterTypes.TAGS}>Tag</option>
         <option value={filterTypes.CREATOR}>Author</option>
       </select>
       <div className="input-field col s6">
-        <input onChange={handlerSearch} placeholder="Placeholder" type="text" className="validate" />
+        <input data-testid="search-input" onChange={handlerSearch} placeholder="Placeholder" type="text" className="validate" />
       </div>
     </div>
   );
