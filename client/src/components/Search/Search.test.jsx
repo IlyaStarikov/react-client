@@ -13,7 +13,7 @@ describe('Search component tests', () => {
   const mockStore = configureMockStore();
   const store = mockStore({});
 
-  test('is dispatch calls by input typing', async () => {
+  test('should call the dispatch when entered into the search bar', async () => {
     render(
       <Provider store={store}>
         <Search />
@@ -29,7 +29,7 @@ describe('Search component tests', () => {
     );
   });
 
-  test('is dispatch calls by change filters', async () => {
+  test('should call the dispatch when filters are changed', async () => {
     render(
       <Provider store={store}>
         <Search />

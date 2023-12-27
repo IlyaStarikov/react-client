@@ -23,8 +23,8 @@ function LocationDisplay() {
   return <div data-testid="location-display">{location.pathname}</div>;
 }
 
-describe('Card tests', () => {
-  test('is nameInProfile prop is rendered', () => {
+describe('Card component tests', () => {
+  test('should find the profile name if we pass it to the component', () => {
     render(
       <BrowserRouter>
         <Card post={postMock} nameInProfile={profileName} />
@@ -36,7 +36,7 @@ describe('Card tests', () => {
     expect(profileNameElement).toBeInTheDocument();
   });
 
-  test('is nameInProfile takes from post', () => {
+  test('should take profile name from post if props nameInProfile is undefined', () => {
     render(
       <BrowserRouter>
         <Card post={postMock} />
@@ -50,7 +50,7 @@ describe('Card tests', () => {
     expect(profileNameAlternativeText).toBeInTheDocument();
   });
 
-  test('is link clicked', () => {
+  test('should follow the link and display the current path', () => {
     render(
       <BrowserRouter>
         <Card post={postMock} nameInProfile={profileName} />
